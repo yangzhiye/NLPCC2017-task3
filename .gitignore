@@ -87,3 +87,11 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+*.swp
+
+*.txt
+
+*.dic
+
+model/tfidf_model
