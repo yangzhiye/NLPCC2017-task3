@@ -95,3 +95,9 @@ ENV/
 *.dic
 
 model/tfidf_model
+
+*.dat
+
+*.bin
+
+thulac/models/model_w
