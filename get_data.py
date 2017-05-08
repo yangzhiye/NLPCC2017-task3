@@ -90,10 +90,52 @@ def get_all_cut_short_text():
 	#print len(list_cut_short_text)
 	return list_cut_short_text
 
+def division_train_and_test_data():
+	
+	filepath = './data/cut_article.txt'
+	f_article = open(filepath,'r')
+	
+	f_new_train = open("./data/cut_article_train.txt",'w+')
+	f_new_test = open("./data/cut_article_test.txt",'w+')
+	
+	for i,line in enumerate(f_article):
+		if i < 45000:
+			f_new_train.write(line)
+		if i >= 45000:
+			f_new_test.write(line)
+	
+	f_article.cloee()
+	f_new_train.close()
+	f_new_test.close()
+
+def get_cut_data_list_list(filepath):
+	
+	list_article = open(filepath,'r')
+	
+	list_test_article = []
+
+	for i , line in enumerate(list_article):
+		
+		list_test_article.append(line.split(" "))
+
+	return list_test_article
+	
+def get_test_summary():
+
+	list_summary , _ = parser_and_return_data_list("data/train_with_summ.txt")
+
+	return list_summary[45000:]
 
 if __name__ == '__main__':
 	
 	#get_clean_data_list("data/train_with_summ.txt")
 	#write_cut_word_to_file()
-	get_all_cut_short_text()
+	#get_all_cut_short_text()
+	#division_train_and_test_data()
+	#list_test_article = get_cut_data_list_list("./data/cut_article_test.txt")
+	#print len(list_test_article) ,type(list_test_article[0]) ,list_test_article[0]
+	list = get_test_summary()
+
+
+
 
