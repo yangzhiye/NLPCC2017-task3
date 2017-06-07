@@ -60,26 +60,35 @@ def get_index_of_summary(dic, model_tfidf, corpus_list, k, list_word):
 	all_size = 0
 	ans_list = []
 	for t in cal_list:
+		
 		if all_size+len(t[2].decode("utf8"))+1 <= 60 and t[1]>0:
 			ans_list.append(t)
 			all_size+=(len(t[2].decode("utf8"))+1)
-
+		'''
+		if all_size+len(t[2].decode("utf8")) <= 60 and t[1]>0:
+			ans_list.append(t)
+			all_size+=(len(t[2].decode("utf8")))
+		'''
 	ans_list = sorted(ans_list,key=lambda x : (x[0]))
 	ans = ""
 	for i,t in enumerate(ans_list):
+		
 		if i == len(ans_list)-1:
 			ans+=t[2]
 			ans+="。"
 		else:
 			ans+=t[2]
 			ans+="，"
+		
+		#ans+=t[2]
 	return ans
 
 def use_tfidf_cal_summary( test_filepath , result_filepath , k):
 	
-	
-	dic = corpora.Dictionary.load("./model/dictionary.tfidf.dic")
-	model_tfidf = models.TfidfModel.load("./model/tfidf_model")
+	#dic = corpora.Dictionary.load("./model/dictionary.tfidf.dic")
+	#model_tfidf = models.TfidfModel.load("./model/tfidf_model")
+	dic = corpora.Dictionary.load("./model/test_dictionary.tfidf.dic")
+	model_tfidf = models.TfidfModel.load("./model/test_tfidf_model")
 	list_test_article = get_data.get_cut_data_list_list(test_filepath)
 	corpus = [dic.doc2bow(text) for text in list_test_article]
 	result_f = open(result_filepath,"w+")
@@ -92,7 +101,11 @@ def use_tfidf_cal_summary( test_filepath , result_filepath , k):
 
 
 if __name__ == "__main__":
-	test_filepath = "./data/cut_article_test.txt"
+	#test_filepath = "./data/cut_article_test.txt"
+	test_filepath = "./data/test_data/cut_test.txt"
+	result_filepath = "./result/test_data_result_tfidf_k23.txt"
+	use_tfidf_cal_summary(test_filepath, result_filepath,23)
+
 	'''
 	for k in range(5,16):
 		result_filepath = "./result/EK_tfidf_result/0504_k=%d.txt"%(k)
@@ -105,7 +118,8 @@ if __name__ == "__main__":
 	for k in range(21,26):
 		result_filepath = "./result/EK_tfidf_result/0504_k=%d.txt"%(k)
 		use_tfidf_cal_summary(test_filepath , result_filepath , k)
-	'''
+	
 	for k in range(26,31):
 		result_filepath = "./result/EK_tfidf_result/0504_k=%d.txt"%(k)
 		use_tfidf_cal_summary(test_filepath , result_filepath , k)
+	'''

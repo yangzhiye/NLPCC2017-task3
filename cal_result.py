@@ -18,7 +18,21 @@ def cal_ROUGE(result_filepath):
 
 
 if __name__ == "__main__":
+	'''
 	for k in range(25,31):
 		print "k is %d"%(k)
 		cal_ROUGE("./result/EK_tfidf_result/0504_k=%d.txt"%(k))
+	'''
 
+	#cal_ROUGE("./result/ES_textrank4zh_result/0518.txt")
+	'''
+	for k in range(10,20):
+		print "k is %d"%(k)
+		cal_ROUGE("./result/EK_textrank4zh_result/0520_k=%d.txt"%(k))
+	'''
+
+	#cal_ROUGE("./result/ES_snownlp_result/0520.txt")
+
+	for k in range(10,20):
+		print "k is %d"%(k)
+		cal_ROUGE("./result/EK_snownlp_result/0521_k=%d.txt"%(k))

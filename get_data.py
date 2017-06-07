@@ -73,10 +73,24 @@ def write_cut_word_to_file():
 		f_no_summ_article.write(content+"\n")
 	f_no_summ_article.close()
 
+def write_test_cut_word_to_file():
+	
+	thu_cut = thulac.thulac("-seg_only")
+	filepath_test_data = "./data/test_data/evaluation_without_ground_truth.txt"
+	_,list_test_data = get_clean_data_list(filepath_test_data)
+	f_test_data = open("./data/test_data/cut_test.txt","w+")
+	for i,article in enumerate(list_test_data):
+		article = article.encode("utf8")
+		list_temp = thu_cut.cut(article)
+		content = " ".join(list_temp)
+		f_test_data.write(content+"\n")
+	f_test_data.close()
+
 def get_all_cut_short_text():
 	
 	f_article = open("./data/cut_article.txt",'r')
 	f_no_summ_article = open("./data/cut_no_summ_article.txt",'r')
+	f_test = open("./data/test_data/cut_test.txt")
 	list_cut_short_text = []
 
 	for i,line in enumerate(f_article):
@@ -86,7 +100,9 @@ def get_all_cut_short_text():
 	for i,line in enumerate(f_no_summ_article):
 		temp_list = line.split(' ')
 		list_cut_short_text.append(temp_list)
-
+	for i,line in enumerate(f_test):
+		temp_list = line.split(' ')
+		list_cut_short_text.append(temp_list)
 	#print len(list_cut_short_text)
 	return list_cut_short_text
 
@@ -134,7 +150,8 @@ if __name__ == '__main__':
 	#division_train_and_test_data()
 	#list_test_article = get_cut_data_list_list("./data/cut_article_test.txt")
 	#print len(list_test_article) ,type(list_test_article[0]) ,list_test_article[0]
-	list = get_test_summary()
+	#list = get_test_summary()
+	write_test_cut_word_to_file()
 
 
 

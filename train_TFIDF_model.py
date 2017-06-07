@@ -10,13 +10,13 @@ def train_TFIDF():
 
 	dictionary = corpora.Dictionary(list_cut_article)
 
-	dictionary.save("dictionary.tfidf.dic")
+	dictionary.save("./model/test_dictionary.tfidf.dic")
 
 	corpus = [dictionary.doc2bow(text) for text in list_cut_article]
 
 	tfidf = models.TfidfModel(corpus)
 
-	tfidf.save('./model/tfidf_model')
+	tfidf.save('./model/test_tfidf_model')
 
 if __name__ == "__main__":
 	
