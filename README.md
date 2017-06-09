@@ -29,3 +29,8 @@
 #### TextRank:Bringing Order into Texts [论文地址](http://www.aclweb.org/anthology/W/W04/W04-3252.pdf)
 
 1. 使用Textrank方法提取文本中关键词/句
+
+## 最终结果
+![](https://github.com/yangzhiye/ImageCache/blob/master/NLPCC%20task3/nlpcc.png)
+
+排名5/9。。溜了溜了。。实习去了。。明年再战。。。
